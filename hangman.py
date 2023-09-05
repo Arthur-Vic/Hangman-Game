@@ -34,7 +34,7 @@ while start != 'start':
     if start != 'start':
         print('Invalid Command')
 
-words_list = ['ROPO']
+words_list = ['ROPE', 'HANGMAN', 'PYTHON', 'PROJECT', 'KNOT', 'PROGRAMMING', 'GAME', 'DEVELOPMENT', 'NOOSE']
 word = random.choice(words_list)
 number_of_dashes = len(word)
 blank_array = ['_'] * number_of_dashes
