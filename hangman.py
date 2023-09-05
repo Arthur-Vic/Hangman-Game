@@ -34,10 +34,9 @@ while start != 'start':
     if start != 'start':
         print('Invalid Command')
 
-words_list = ['ROPE']
+words_list = ['ROPO']
 word = random.choice(words_list)
 number_of_dashes = len(word)
-letter_array = word.split
 blank_array = ['_'] * number_of_dashes
 
 head = 'O'
@@ -74,10 +73,14 @@ while ' ' in blank_hangman:
         break
 
     letter = input('Guess a letter: ').upper().strip()
-    
+
     if letter in word:
-        letter_index = word.find(letter)
-        blank_array[letter_index] = letter
+        while letter in word:
+            letter_index = word.find(letter)
+            blank_array[letter_index] = letter
+            word_array = list(word)
+            word_array[letter_index] = ' '
+            word = ''.join(word_array)
     else:
         loose_life()
 
@@ -89,6 +92,7 @@ while ' ' in blank_hangman:
     print ('')
     print (f'Lives: {player_lives}')
     print ('')
+    print(word)
     #print(blank_hangman)   #Debugging
 
 
