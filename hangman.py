@@ -92,7 +92,7 @@ while ' ' in blank_hangman:
     print ('')
     print (f'Lives: {player_lives}')
     print ('')
-    print(word)
+    #print(word)   #Debugging
     #print(blank_hangman)   #Debugging
 
 
