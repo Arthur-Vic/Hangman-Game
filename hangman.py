@@ -57,13 +57,20 @@ for dash in blank_array:
 print ('')
 
 player_lives = 6
-index = (player_lives * -1)
 
 def loose_life():
     global player_lives
     index = (player_lives * -1)
     blank_hangman[index] = hangman[index]
     player_lives -= 1
+
+def ui_update():
+    print(f' ____\n|    |\n|    {blank_hangman[0]}\n|   {blank_hangman[1]}{blank_hangman[2]}{blank_hangman[3]}\n|   {blank_hangman[4]} {blank_hangman[5]}\n|\n|', end = '')
+    for dash in blank_array:
+        print (' ' + dash, end = '')
+    print ('')
+    print (f'Lives: {player_lives}')
+    print ('')
 
 #GAME START -----------------------------------------------------------
 
@@ -73,6 +80,11 @@ while ' ' in blank_hangman:
         break
 
     letter = input('Guess a letter: ').upper().strip()
+    if letter == '' or len(letter) > 1:
+        print('Invalid Input! Life Lost!')
+        loose_life()
+        ui_update()
+        continue
 
     if letter in word:
         while letter in word:
@@ -84,15 +96,8 @@ while ' ' in blank_hangman:
     else:
         loose_life()
 
-    print(f' ____\n|    |\n|    {blank_hangman[0]}\n|   {blank_hangman[1]}{blank_hangman[2]}{blank_hangman[3]}\n|   {blank_hangman[4]} {blank_hangman[5]}\n|\n|', end = '')
-
-    for dash in blank_array:
-        print (' ' + dash, end = '')
-
-    print ('')
-    print (f'Lives: {player_lives}')
-    print ('')
-    print(word)
+    ui_update()
+    #print(word)   #Debugging
     #print(blank_hangman)   #Debugging
 
 
